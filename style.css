@@ -1,6 +1,23 @@
 body {
     font-family: sans-serif;
     text-align: center;
+    padding: 20px;
+}
+
+.header-container {
+    margin-bottom: 20px;
+}
+
+#date-picker {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#week-number-display {
+    margin-left: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
 }
 
 #money-container {
@@ -14,6 +31,7 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .good {
@@ -21,7 +39,52 @@ body {
     color: white;
 }
 
+.good:hover {
+    background-color: #45a049;
+}
+
 .bad {
     background-color: #f44336;
+    color: white;
+}
+
+.bad:hover {
+    background-color: #da190b;
+}
+
+#history-table {
+    width: 80%;
+    margin: 30px auto;
+    border-collapse: collapse;
+}
+
+#history-table th, #history-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#history-table th {
+    background-color: #f2f2f2;
+}
+
+.io-buttons {
+    margin-top: 30px;
+}
+
+.io-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+#export-button {
+    background-color: #008CBA;
+    color: white;
+}
+
+#import-button {
+    background-color: #555555;
     color: white;
 }

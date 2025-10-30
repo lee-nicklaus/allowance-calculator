@@ -7,11 +7,37 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="header-container">
+        <input type="date" id="date-picker">
+        <span id="week-number-display"></span>
+    </div>
+
     <h1>本周零花钱</h1>
     <div id="money-container">
         <span id="money">100</span> RMB
     </div>
     <div id="labels-container"></div>
+
+    <h2>操作记录</h2>
+    <table id="history-table">
+        <thead>
+            <tr>
+                <th>日期</th>
+                <th>标签</th>
+                <th>金额 (RMB)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- History records will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+
+    <div class="io-buttons">
+        <button id="export-button">导出数据</button>
+        <button id="import-button">导入数据</button>
+        <input type="file" id="import-file" hidden accept=".json">
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
