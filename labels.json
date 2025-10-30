@@ -1,0 +1,8 @@
+[
+    { "type": "good", "name": "做家务", "money": 10 },
+    { "type": "good", "name": "按时完成作业", "money": 10 },
+    { "type": "good", "name": "表现良好", "money": 20 },
+    { "type": "bad", "name": "不做家务", "money": -10 },
+    { "type": "bad", "name": "不按时完成作业", "money": -10 },
+    { "type": "bad", "name": "表现不好", "money": -20 }
+]
