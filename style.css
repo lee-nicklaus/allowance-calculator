@@ -67,6 +67,19 @@ body {
     background-color: #f2f2f2;
 }
 
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #da190b;
+}
+
 .io-buttons {
     margin-top: 30px;
 }

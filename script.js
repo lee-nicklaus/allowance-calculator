@@ -77,11 +77,22 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function addRecord(name, money) {
         const newRecord = {
+            id: Date.now(), // Unique ID for deletion
             date: selectedDate.toISOString().split('T')[0],
             name,
             money
         };
         allRecords.push(newRecord);
+        saveDataToLocalStorage();
+        updateDisplay(selectedDate);
+    }
+
+    /**
+     * Deletes a record by its ID.
+     * @param {number} id The ID of the record to delete.
+     */
+    function deleteRecord(id) {
+        allRecords = allRecords.filter(record => record.id !== id);
         saveDataToLocalStorage();
         updateDisplay(selectedDate);
     }
@@ -110,6 +121,13 @@ document.addEventListener('DOMContentLoaded', () => {
             row.insertCell(0).textContent = record.date;
             row.insertCell(1).textContent = record.name;
             row.insertCell(2).textContent = record.money;
+
+            const actionCell = row.insertCell(3);
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = '删除';
+            deleteButton.classList.add('delete-btn');
+            deleteButton.addEventListener('click', () => deleteRecord(record.id));
+            actionCell.appendChild(deleteButton);
         });
     }
 
