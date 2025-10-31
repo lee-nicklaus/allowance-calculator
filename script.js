@@ -1,13 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
     const moneyElement = document.getElementById('money');
-    const labelsContainer = document.getElementById('labels-container');
     const datePicker = document.getElementById('date-picker');
     const weekNumberDisplay = document.getElementById('week-number-display');
     const historyTableBody = document.querySelector('#history-table tbody');
     const exportButton = document.getElementById('export-button');
     const importButton = document.getElementById('import-button');
     const importFile = document.getElementById('import-file');
+    const goodButton = document.getElementById('good-button');
+    const notGoodButton = document.getElementById('not-good-button');
+    const labelsModal = document.getElementById('labels-modal');
+    const modalLabelsContainer = document.getElementById('modal-labels-container');
+    const modalCloseButton = document.getElementById('modal-close-button');
+
 
     // App State
     let allRecords = [];
@@ -24,6 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
     exportButton.addEventListener('click', exportData);
     importButton.addEventListener('click', () => importFile.click());
     importFile.addEventListener('change', importData);
+    goodButton.addEventListener('click', () => openLabelsModal('good'));
+    notGoodButton.addEventListener('click', () => openLabelsModal('bad'));
+    modalCloseButton.addEventListener('click', closeLabelsModal);
+    labelsModal.addEventListener('click', (e) => {
+        if (e.target === labelsModal) {
+            closeLabelsModal();
+        }
+    });
 
     /**
      * Fetches label data from the JSON file.
@@ -33,24 +46,35 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => response.json())
             .then(data => {
                 labelsData = data;
-                renderLabels();
             });
     }
 
     /**
-     * Renders the reward and punishment buttons.
+     * Opens the labels modal with a specific type of labels.
+     * @param {string} type The type of labels to show ('good' or 'bad').
      */
-    function renderLabels() {
-        labelsContainer.innerHTML = '';
-        labelsData.forEach(label => {
+    function openLabelsModal(type) {
+        modalLabelsContainer.innerHTML = '';
+        const filteredLabels = labelsData.filter(label => label.type === type);
+
+        filteredLabels.forEach(label => {
             const button = document.createElement('button');
             button.textContent = `${label.name} (${label.money > 0 ? '+' : ''}${label.money} RMB)`;
-            button.classList.add(label.type);
             button.addEventListener('click', () => {
                 addRecord(label.name, label.money);
+                closeLabelsModal();
             });
-            labelsContainer.appendChild(button);
+            modalLabelsContainer.appendChild(button);
         });
+
+        labelsModal.style.display = 'flex';
+    }
+
+    /**
+     * Closes the labels modal.
+     */
+    function closeLabelsModal() {
+        labelsModal.style.display = 'none';
     }
 
     /**
@@ -124,8 +148,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const actionCell = row.insertCell(3);
             const deleteButton = document.createElement('button');
-            deleteButton.textContent = '删除';
+            deleteButton.innerHTML = '&#x1F5D1;'; // Trash can emoji
             deleteButton.classList.add('delete-btn');
+            deleteButton.title = '删除此条记录';
             deleteButton.addEventListener('click', () => deleteRecord(record.id));
             actionCell.appendChild(deleteButton);
         });

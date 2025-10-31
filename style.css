@@ -2,6 +2,7 @@ body {
     font-family: sans-serif;
     text-align: center;
     padding: 20px;
+    padding-bottom: 80px; /* Add padding to prevent content from being hidden by fixed buttons */
 }
 
 .header-container {
@@ -25,33 +26,6 @@ body {
     margin: 20px 0;
 }
 
-#labels-container button {
-    margin: 5px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.good {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.good:hover {
-    background-color: #45a049;
-}
-
-.bad {
-    background-color: #f44336;
-    color: white;
-}
-
-.bad:hover {
-    background-color: #da190b;
-}
-
 #history-table {
     width: 80%;
     margin: 30px auto;
@@ -68,16 +42,15 @@ body {
 }
 
 .delete-btn {
-    background-color: #f44336;
-    color: white;
+    background-color: transparent;
     border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
+    font-size: 1.2em;
     cursor: pointer;
+    padding: 5px;
 }
 
 .delete-btn:hover {
-    background-color: #da190b;
+    color: #f44336;
 }
 
 .io-buttons {
@@ -100,4 +73,88 @@ body {
 #import-button {
     background-color: #555555;
     color: white;
+}
+
+/* Action Buttons Container */
+.action-buttons-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+.action-btn {
+    flex: 1;
+    padding: 15px;
+    font-size: 1.2em;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.good {
+    background-color: #4CAF50;
+}
+
+.bad {
+    background-color: #f44336;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+    animation: slideUp 0.3s ease-out;
+}
+
+#modal-labels-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#modal-labels-container button {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+}
+
+#modal-close-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ccc;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
 }
