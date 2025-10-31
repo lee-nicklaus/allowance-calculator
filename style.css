@@ -127,18 +127,19 @@ body {
 
 #modal-labels-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 10px;
-    justify-content: center;
     margin-bottom: 20px;
 }
 
 #modal-labels-container button {
+    width: 100%;
     padding: 10px 15px;
     border: 1px solid #ccc;
-    border-radius: 20px;
+    border-radius: 8px;
     cursor: pointer;
     background-color: #f9f9f9;
+    box-sizing: border-box;
 }
 
 #modal-close-button {

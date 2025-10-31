@@ -112,13 +112,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Deletes a record by its ID.
+     * Deletes a record by its ID after confirmation.
      * @param {number} id The ID of the record to delete.
      */
     function deleteRecord(id) {
-        allRecords = allRecords.filter(record => record.id !== id);
-        saveDataToLocalStorage();
-        updateDisplay(selectedDate);
+        if (confirm('您确定要删除这条记录吗？')) {
+            allRecords = allRecords.filter(record => record.id !== id);
+            saveDataToLocalStorage();
+            updateDisplay(selectedDate);
+        }
     }
 
     /**
