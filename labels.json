@@ -1,8 +1,15 @@
 [
-    { "type": "good", "name": "做家务", "money": 10 },
-    { "type": "good", "name": "按时完成作业", "money": 10 },
-    { "type": "good", "name": "表现良好", "money": 20 },
-    { "type": "bad", "name": "不做家务", "money": -10 },
-    { "type": "bad", "name": "不按时完成作业", "money": -10 },
-    { "type": "bad", "name": "表现不好", "money": -20 }
+    { "type": "good", "name": "按时完成作业（不漏写不错写）", "money": 10 },
+    { "type": "good", "name": "自己吃饭", "money": 5 },
+    { "type": "good", "name": "自己穿脱衣物", "money": 5 },
+    { "type": "good", "name": "懂礼貌", "money": 2 },
+    { "type": "good", "name": "自己收拾东西", "money": 1 },
+    { "type": "good", "name": "主动帮忙", "money": 1 },
+    { "type": "bad", "name": "违反安全规则/次", "money": -20 },
+    { "type": "bad", "name": "不讲道理耍无赖/次", "money": -20 },
+    { "type": "bad", "name": "幼儿园迟到", "money": -10 },
+    { "type": "bad", "name": "拖时间（叫不应）/次", "money": -2 },
+    { "type": "bad", "name": "不好好吃饭", "money": -2 },
+    { "type": "bad", "name": "吸灰", "money": -2 },
+    { "type": "bad", "name": "吃手/次", "money": -2 }
 ]
