@@ -124,6 +124,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
+     * Updates the date of a specific record.
+     * @param {number} id The ID of the record to update.
+     * @param {string} newDate The new date string (YYYY-MM-DD).
+     */
+    function updateRecordDate(id, newDate) {
+        const recordToUpdate = allRecords.find(record => record.id === id);
+        if (recordToUpdate) {
+            recordToUpdate.date = newDate;
+            saveDataToLocalStorage();
+            updateDisplay(selectedDate); // Re-render the UI
+        }
+    }
+
+    /**
+     * Enables in-place editing for a record's date.
+     * @param {HTMLElement} row The table row element.
+     * @param {object} record The record object corresponding to the row.
+     */
+    function enableDateEditing(row, record) {
+        const dateCell = row.cells[0];
+        const originalDate = record.date;
+        dateCell.innerHTML = ''; // Clear the cell
+
+        const dateInput = document.createElement('input');
+        dateInput.type = 'date';
+        dateInput.value = originalDate;
+
+        // Save and exit edit mode when a new date is selected or focus is lost
+        const saveChanges = () => {
+            updateRecordDate(record.id, dateInput.value);
+            // The updateDisplay function will redraw the table, removing the input
+        };
+
+        dateInput.addEventListener('blur', saveChanges);
+        dateInput.addEventListener('change', saveChanges);
+
+        dateInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                saveChanges();
+            } else if (e.key === 'Escape') {
+                // Cancel editing and restore original view
+                updateDisplay(selectedDate);
+            }
+        });
+
+        dateCell.appendChild(dateInput);
+        dateInput.focus();
+    }
+
+
+    /**
      * Updates the entire UI based on the selected date.
      * @param {Date} date The selected date.
      */
@@ -149,11 +200,20 @@ document.addEventListener('DOMContentLoaded', () => {
             row.insertCell(2).textContent = record.money;
 
             const actionCell = row.insertCell(3);
+
+            const editButton = document.createElement('button');
+            editButton.innerHTML = '&#9998;'; // Pencil emoji
+            editButton.classList.add('edit-btn');
+            editButton.title = '修改日期';
+            editButton.addEventListener('click', () => enableDateEditing(row, record));
+
             const deleteButton = document.createElement('button');
             deleteButton.innerHTML = '&#x1F5D1;'; // Trash can emoji
             deleteButton.classList.add('delete-btn');
             deleteButton.title = '删除此条记录';
             deleteButton.addEventListener('click', () => deleteRecord(record.id));
+
+            actionCell.appendChild(editButton);
             actionCell.appendChild(deleteButton);
         });
     }

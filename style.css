@@ -41,12 +41,16 @@ body {
     background-color: #f2f2f2;
 }
 
-.delete-btn {
+.edit-btn, .delete-btn {
     background-color: transparent;
     border: none;
     font-size: 1.2em;
     cursor: pointer;
     padding: 5px;
+}
+
+.edit-btn:hover {
+    color: #008CBA; /* Blue hover for edit */
 }
 
 .delete-btn:hover {
