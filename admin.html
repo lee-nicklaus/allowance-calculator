@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据库初始化 - PocketBase 管理</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="admin-container">
+        <h1>数据库初始化 (PocketBase)</h1>
+        <p>此页面用于在您的 PocketBase 实例中自动创建所需的 'labels' 和 'records' 数据表 (Collections)。</p>
+        <p><strong>注意:</strong> 此操作不可逆，请在干净的 PocketBase 项目上运行。管理员凭据仅用于本次操作，不会被存储。</p>
+
+        <div id="admin-form">
+            <div class="form-group">
+                <label for="pb-url">PocketBase URL:</label>
+                <input type="url" id="pb-url" placeholder="例如: http://127.0.0.1:8090" required>
+            </div>
+            <div class="form-group">
+                <label for="admin-email">管理员邮箱:</label>
+                <input type="email" id="admin-email" required>
+            </div>
+            <div class="form-group">
+                <label for="admin-password">管理员密码:</label>
+                <input type="password" id="admin-password" required>
+            </div>
+            <button id="init-db-button">初始化数据库</button>
+        </div>
+
+        <div id="result-log">
+            <h2>操作日志:</h2>
+            <pre id="log-output">等待操作...</pre>
+        </div>
+    </div>
+
+    <!-- 引入 PocketBase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/pocketbase@latest/dist/pocketbase.umd.js"></script>
+    <!-- 引入管理页面脚本 -->
+    <script src="admin.js"></script>
+</body>
+</html>
